@@ -10,4 +10,11 @@
     <ProjectReference Include="..\Grupparbete-Api\Grupparbete-Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Dto\" />
+    <Folder Include="Query\" />
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
 </Project>

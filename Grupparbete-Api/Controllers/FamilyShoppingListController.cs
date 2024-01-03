@@ -4,7 +4,7 @@ namespace Grupparbete_Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class FamilyShoppinListController : ControllerBase
+    public class FamilyShoppingListController : ControllerBase
     {
 
     }
