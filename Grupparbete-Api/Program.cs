@@ -23,7 +23,6 @@ builder.Services.AddSwaggerGen(options =>
     });
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
-
 builder.Services.AddApplication().AddInfrastructure();
 
 var app = builder.Build();
