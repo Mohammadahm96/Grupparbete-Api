@@ -1,7 +1,10 @@
 using Application;
 using Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +27,19 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 builder.Services.AddApplication().AddInfrastructure();
+//Jwt Services
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+ .AddJwtBearer(options =>
+ {
+     options.TokenValidationParameters = new TokenValidationParameters
+     {
+         ValidateIssuerSigningKey = true,
+         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.
+      GetBytes(builder.Configuration.GetSection("AppSetings:Token").Value!)),
+         ValidateIssuer = false,
+         ValidateAudience = false
+     };
+ });
 
 var app = builder.Build();
 

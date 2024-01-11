@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Infrastructure.Authentication;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure
 {
@@ -6,7 +7,7 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            // Add service for JwtTokenGenerator
+            services.AddSingleton<JWTtokenGenerator>();
 
             // add services for other Interfaces and responsive Repositories
 
