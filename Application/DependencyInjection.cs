@@ -1,4 +1,6 @@
 ﻿using FluentValidation;
+using Infrastructure.Interface;
+using Infrastructure.Repositories.AnimalRepository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
@@ -13,11 +15,9 @@ namespace Application
 
             services.AddValidatorsFromAssembly(assembly);
 
+            services.AddScoped<IArticleRepository, ArticleRepository>();
+
             return services;
         }
-
-
-
-
     }
 }
