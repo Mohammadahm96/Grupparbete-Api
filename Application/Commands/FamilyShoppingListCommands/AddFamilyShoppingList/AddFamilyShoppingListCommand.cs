@@ -8,9 +8,9 @@ namespace Application.Commands.FamilyShoppingListCommands.AddFamilyShoppingList
     {
         public AddFamilyShoppingListCommand(FamilyShoppingListDto newFamilyShoppingList)
         {
-            NewFamilyShoppingLIst = newFamilyShoppingList;
+            NewFamilyShoppingList = newFamilyShoppingList;
         }
 
-        public FamilyShoppingListDto NewFamilyShoppingLIst { get; }
+        public FamilyShoppingListDto NewFamilyShoppingList { get; }
     }
 }
