@@ -6,27 +6,27 @@ namespace Infrastructure.Repositories.AnimalRepository
 {
     public class ArticleRepository : IArticleRepository
     {
-        //    private readonly ProjectDbContext _ProjectDbContext;
+        private readonly MyDbContext _MyDbContext;
 
-        //    public ArticleRepository(ProjectDbContext animalDbContext)
-        //    {
-        //        _ProjectDbContext = _ProjectDbContext;
+        public ArticleRepository(MyDbContext myDbContext)
+        {
+            _MyDbContext = _MyDbContext;
 
-        //    }
+        }
 
-        //    public async Task AddShoppingListAsync<T>(T entity) where T : class
-        //    {
+        public async Task AddShoppingListAsync<T>(T entity) where T : class
+        {
 
-        //        try
-        //        {
+            try
+            {
 
-        //            //await _ProjectDbContext.Set<T>().AddAsync(entity);
-        //            //await _ProjectDbContext.SaveChangesAsync();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw;
-        //        }
-        //    }
+                await _MyDbContext.Set<T>().AddAsync(entity);
+                await _MyDbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
