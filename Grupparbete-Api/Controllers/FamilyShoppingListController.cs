@@ -1,3 +1,5 @@
+using Application.Commands.FamilyShoppingListCommands.AddFamilyShoppingList;
+using Application.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,11 +15,11 @@ namespace Grupparbete_Api.Controllers
             _mediator = mediator;
         }
 
-        //[HttpPost]
-        //[Route("addNewArticle")]
-        //public async Task<IActionResult> AddArticle([FromBody] FamilyShoppingListDto newFamilyShoppingList)
-        //{
-        //    return Ok(await _mediator.Send(new AddFamilyShoppingListCommand(newFamilyShoppingList)));
-        //}
+        [HttpPost]
+        [Route("addNewArticle")]
+        public async Task<IActionResult> AddArticle([FromBody] FamilyShoppingListDto newFamilyShoppingList)
+        {
+            return Ok(await _mediator.Send(new AddFamilyShoppingListCommand(newFamilyShoppingList)));
+        }
     }
 }
