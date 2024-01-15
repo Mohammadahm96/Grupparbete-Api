@@ -13,9 +13,9 @@ namespace Application.Query.Users.LoginUser
     {
         private readonly IUserRepository _userRepository;
 
-        public LoginUserQueryHandler(IUserRepository userRepository) 
+        public LoginUserQueryHandler(IUserRepository userRepository)
         {
-          _userRepository = userRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<string> Handle(LoginUserQuery request, CancellationToken cancellationToken)
