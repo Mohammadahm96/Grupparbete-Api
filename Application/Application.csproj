@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Query\Users\GetAllUsers\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 
