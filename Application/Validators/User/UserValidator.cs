@@ -23,7 +23,7 @@ namespace Application.Validators.User
                 .NotEqual("password", StringComparer.OrdinalIgnoreCase)
                     .WithMessage("Password cannot be 'password'.");
 
-            
+
         }
     }
 }
