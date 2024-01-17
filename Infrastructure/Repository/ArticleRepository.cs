@@ -6,19 +6,19 @@ namespace Infrastructure.Repositories.AnimalRepository
 {
     public class ArticleRepository : IArticleRepository
     {
-        private readonly DbContext _dbContext;
+        private readonly MyDbContext _myDbContext;
 
-        public ArticleRepository(DbContext dbContext)
+        public ArticleRepository(MyDbContext mydbContext)
         {
-            _dbContext = dbContext;
+            _myDbContext = mydbContext;
         }
 
         public async Task AddShoppingListAsync<T>(T entity) where T : class
         {
             try
             {
-                await _dbContext.Set<T>().AddAsync(entity);
-                await _dbContext.SaveChangesAsync();
+                await _myDbContext.Set<T>().AddAsync(entity);
+                await _myDbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
