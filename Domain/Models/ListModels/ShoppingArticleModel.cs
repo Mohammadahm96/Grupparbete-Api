@@ -1,7 +1,10 @@
-﻿namespace Domain.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Models
 {
     public class ShoppingArticleModel
     {
+        [Key]
         public Guid ArticleId { get; set; }
         public required string ArticleName { get; set; }
         public int ArticleQuantity { get; set; }
