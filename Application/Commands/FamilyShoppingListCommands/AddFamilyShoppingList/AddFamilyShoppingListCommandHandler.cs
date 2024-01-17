@@ -18,6 +18,7 @@ namespace Application.Commands.FamilyShoppingList.AddFamilyShoppingList
         {
             FamilyArticleList FamilyListToCreate = new FamilyArticleList
             {
+                FamilyName = request.NewFamilyShoppingList.FamilyName,
                 ArticleId = Guid.NewGuid(),
                 ArticleName = request.NewFamilyShoppingList.ArticleName,
                 ArticleQuantity = 1,
