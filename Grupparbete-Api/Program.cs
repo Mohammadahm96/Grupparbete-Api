@@ -19,7 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 // Configure DbContext
 var configuration = builder.Configuration;
 
-builder.Services.AddDbContext<MyDbContext>(options =>
+builder.Services.AddDbContext<DbContext>(options =>
 {
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
 });
