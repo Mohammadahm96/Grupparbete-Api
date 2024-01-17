@@ -1,5 +1,7 @@
 ﻿using Infrastructure.Authentication;
 using Infrastructure.Data;
+using Infrastructure.Interfaces;
+using Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +15,7 @@ namespace Infrastructure
             services.AddSingleton<JWTtokenGenerator>();
 
             // Add services for other Interfaces and responsive Repositories
-            // services.AddScoped<IUserRepository, UserRepository>;
+            services.AddScoped<IUserRepository, UserRepository>();
 
             // Add service for DbContext
             services.AddDbContext<MyDbContext>(options =>

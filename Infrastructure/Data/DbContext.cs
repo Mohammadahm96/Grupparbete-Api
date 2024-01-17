@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Models.UserModel;
-using System.Collections.Generic;
 
 namespace Infrastructure.Data
 {
