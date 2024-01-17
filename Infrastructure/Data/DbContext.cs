@@ -13,6 +13,5 @@ namespace Infrastructure.Data
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
         }
-
     }
 }
