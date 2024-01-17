@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Models.UserModel;
+
 using Domain.Models.ListModels;
 
 namespace Infrastructure.Data;
@@ -13,5 +14,4 @@ public class MyDbContext : DbContext
     public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
     {
     }
-
 }
