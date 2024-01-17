@@ -2,6 +2,6 @@
 {
     public class FamilyArticleList : ShoppingArticleModel
     {
-        public string? FamilyList { get; set; }
+        public string? FamilyName { get; set; }
     }
 }
