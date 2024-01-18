@@ -6,13 +6,13 @@ namespace Application.Commands.SommarHusListCommands.UpdateSommarHusList
 {
     public class UpdateSommarHusListByIdCommand : IRequest<SommarHusArticleList>
     {
-        public UpdateSommarHusListByIdCommand(Guid id, SommarHusListDto updatedSommarHusArticleList)
+        public UpdateSommarHusListByIdCommand(Guid id, SommarHusListDto updatedSommarHusList)
         {
 
             Id = id;
-            SommarHusArticleListToUpdate = updatedSommarHusArticleList;
+            SommarHusListToUpdate = updatedSommarHusList;
         }
-        public SommarHusListDto SommarHusArticleListToUpdate { get; }
+        public SommarHusListDto SommarHusListToUpdate { get; }
         public Guid Id { get; }
     }
 }

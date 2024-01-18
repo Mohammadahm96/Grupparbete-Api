@@ -14,11 +14,11 @@ namespace Application.Commands.SommarHusListCommands.UpdateSommarHusList
         }
         public async Task<SommarHusArticleList> Handle(UpdateSommarHusListByIdCommand request, CancellationToken cancellationToken)
         {
-            var sommarHusArticleListToUpdate = await _sommarHusListRepository!.GetSommarHusListByIdAsync(request.Id);
-            if (sommarHusArticleListToUpdate != null)
+            var sommarHusListToUpdate = await _sommarHusListRepository!.GetSommarHusListByIdAsync(request.Id);
+            if (sommarHusListToUpdate != null)
             {
                 await _sommarHusListRepository!.UpdateSommarHusListByIdAsync(request.Id);
-                return sommarHusArticleListToUpdate;
+                return sommarHusListToUpdate;
             }
             return null!;
         }
