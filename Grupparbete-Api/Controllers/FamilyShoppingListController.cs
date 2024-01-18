@@ -1,3 +1,4 @@
+using Application.Commands.FamilyShoppingListCommands;
 using Application.Commands.FamilyShoppingListCommands.AddFamilyShoppingList;
 using Application.Dto;
 using MediatR;
@@ -17,9 +18,17 @@ namespace Grupparbete_Api.Controllers
 
         [HttpPost]
         [Route("addNewArticle")]
-        public async Task<IActionResult> AddArticle([FromBody] FamilyShoppingListDto newFamilyShoppingList)
+        public async Task<IActionResult> AddArticle([FromBody] FamilyShoppingListDto newFamilyShoppingList, [FromQuery] Guid familyId)
         {
-            return Ok(await _mediator.Send(new AddFamilyShoppingListCommand(newFamilyShoppingList)));
+
+            if (familyId == Guid.Empty)
+            {
+                return BadRequest("FamilyId is required to add an article to the family shopping list.");
+            }
+
+            newFamilyShoppingList.FamilyId = familyId;
+
+            return Ok(await _mediator.Send(new AddArticleToFamilyShoppingListCommand(newFamilyShoppingList)));
         }
     }
 }

@@ -5,25 +5,30 @@ using MediatR;
 
 namespace Application.Commands.FamilyShoppingList.AddFamilyShoppingList
 {
-    public class AddFamilyShoppingListCommandHandler : IRequestHandler<AddFamilyShoppingListCommand, FamilyArticleList>
+    public class AddArticleToFamilyShoppingListCommandHandler : IRequestHandler<AddArticleToFamilyShoppingListCommand, FamilyArticleList>
     {
         private readonly IArticleRepository _ArticleRepository;
 
-        public AddFamilyShoppingListCommandHandler(IArticleRepository articleRepository)
+        public AddArticleToFamilyShoppingListCommandHandler(IArticleRepository articleRepository)
         {
             _ArticleRepository = articleRepository;
         }
 
-        public async Task<FamilyArticleList> Handle(AddFamilyShoppingListCommand request, CancellationToken cancellationToken)
+        public async Task<FamilyArticleList> Handle(AddArticleToFamilyShoppingListCommand request, CancellationToken cancellationToken)
         {
+            // Kontrollera om FamilyId är giltigt
+            if (request.NewFamilyShoppingList.FamilyId == Guid.Empty)
+            {
+                throw new Exception("FamilyId is required to add an article to the family shopping list.");
+            }
+
             FamilyArticleList FamilyListToCreate = new FamilyArticleList
             {
-                FamilyName = request.NewFamilyShoppingList.FamilyName,
+                FamilyId = request.NewFamilyShoppingList.FamilyId,
                 ArticleId = Guid.NewGuid(),
                 ArticleName = request.NewFamilyShoppingList.ArticleName,
                 ArticleQuantity = 1,
                 IsAvailable = true
-
             };
 
             try

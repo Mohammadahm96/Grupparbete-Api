@@ -4,9 +4,9 @@ using MediatR;
 
 namespace Application.Commands.FamilyShoppingListCommands.AddFamilyShoppingList
 {
-    public class AddFamilyShoppingListCommand : IRequest<FamilyArticleList>
+    public class AddArticleToFamilyShoppingListCommand : IRequest<FamilyArticleList>
     {
-        public AddFamilyShoppingListCommand(FamilyShoppingListDto newFamilyShoppingList)
+        public AddArticleToFamilyShoppingListCommand(FamilyShoppingListDto newFamilyShoppingList)
         {
             NewFamilyShoppingList = newFamilyShoppingList;
         }
