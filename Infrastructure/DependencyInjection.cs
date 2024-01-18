@@ -19,6 +19,7 @@ namespace Infrastructure
             // Add services for other Interfaces and responsive Repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IArticleRepository, ArticleRepository>();
+            services.AddScoped<ISommarHusListRepository, SommarHusListRepository>();
 
             // Add service for DbContext
             services.AddDbContext<MyDbContext>(options =>

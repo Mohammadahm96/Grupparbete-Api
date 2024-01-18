@@ -10,6 +10,7 @@ public class MyDbContext : DbContext
     public DbSet<User> Users { get; set; }
 
     public DbSet<FamilyArticleList> FamilyArticleList { get; set; }
+    public virtual DbSet<SommarHusArticleList> SommarHusLists { get; set; }
 
     public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
     {
