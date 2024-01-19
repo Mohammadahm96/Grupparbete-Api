@@ -1,8 +1,9 @@
-﻿using Infrastructure.Data;
+﻿using Domain.Models.ListModels;
+using Infrastructure.Data;
 using Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories.AnimalRepository
+namespace Infrastructure.Repository
 {
     public class ArticleRepository : IArticleRepository
     {
@@ -22,8 +23,6 @@ namespace Infrastructure.Repositories.AnimalRepository
             }
             catch (Exception ex)
             {
-                // Börja inte med 'throw;' här om du inte gör något med undantaget.
-                // Det kan göra felsökningen svårare.
                 throw;
             }
         }
@@ -53,5 +52,27 @@ namespace Infrastructure.Repositories.AnimalRepository
                 throw new Exception("Failed to retrieve familyName from the database", ex);
             }
         }
+
+        //public async Task<Guid> AddFamilyAsync(string familyName)
+        //{
+        //    try
+        //    {
+        //        var newFamily = new FamilyArticleList
+        //        {
+        //            FamilyId = Guid.NewGuid(),
+        //            FamilyName = familyName
+        //        };
+
+        //        await _myDbContext.Set<FamilyArticleList>().AddAsync(newFamily);
+        //        await _myDbContext.SaveChangesAsync();
+
+        //        return newFamily.FamilyId;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Hantera undantag här om det behövs
+        //        throw;
+        //    }
+        //}
     }
 }
