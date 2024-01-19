@@ -6,8 +6,8 @@ namespace Application.Dto
     {
         [JsonIgnore]
         public Guid FamilyId { get; set; }
-        public required string ArticleName { get; set; }
-        public int ArticleQuantity { get; set; }
-        public bool IsAvailable { get; set; }
+        public string? ArticleName { get; set; }
+        public int? ArticleQuantity { get; set; }
+        public bool? IsAvailable { get; set; }
     }
 }

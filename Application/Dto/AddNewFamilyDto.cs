@@ -8,7 +8,6 @@ namespace Application.Dto
 {
     public class AddNewFamilyDto
     {
-        public Guid FamilyId { get; set; }
         public string FamilyName { get; set; }
     }
 }
