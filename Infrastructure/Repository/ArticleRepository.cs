@@ -1,6 +1,7 @@
 ﻿using Domain.Models.ListModels;
 using Infrastructure.Data;
 using Infrastructure.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repository
 {
