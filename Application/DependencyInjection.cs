@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using Infrastructure.Interface;
-using Infrastructure.Repositories.AnimalRepository;
+using Infrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application

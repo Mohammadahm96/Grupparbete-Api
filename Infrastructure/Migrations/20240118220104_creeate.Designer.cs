@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20240118130317_createe")]
-    partial class createe
+    [Migration("20240118220104_creeate")]
+    partial class creeate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("ArticleQuantity")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("FamilyId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FamilyName")
                         .HasColumnType("nvarchar(max)");

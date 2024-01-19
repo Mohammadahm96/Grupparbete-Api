@@ -2,7 +2,6 @@
 using Infrastructure.Data;
 using Infrastructure.Interface;
 using Infrastructure.Interfaces;
-using Infrastructure.Repositories.AnimalRepository;
 using Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
