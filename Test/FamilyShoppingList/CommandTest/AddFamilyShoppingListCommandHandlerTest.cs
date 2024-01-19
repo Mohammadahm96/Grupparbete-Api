@@ -1,5 +1,4 @@
-﻿using Application.Commands.FamilyShoppingList.AddFamilyShoppingList;
-using Application.Commands.FamilyShoppingListCommands.AddFamilyShoppingList;
+﻿using Application.Commands.FamilyShoppingListCommands.AddFamilyShoppingList;
 using Application.Dto;
 using Domain.Models;
 using Domain.Models.ListModels;
@@ -12,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.ShoppingList
+namespace Test.FamilyShoppingList.Command
 {
     [TestFixture]
 
@@ -23,33 +22,41 @@ namespace Test.ShoppingList
         {
             //Arrange        
             var famRepo = A.Fake<IArticleRepository>();
-            var newFamilyShoppingList = new FamilyShoppingListDto {
-                
-                FamilyName = "TestFam", ArticleName = "TestArticle",
-                ArticleQuantity = 1, IsAvailable = true,
-            };          
-            var addFamilyShoppingListCmd = new AddFamilyShoppingListCommand(newFamilyShoppingList);
+
+            var guid = new Guid("ce9b91e4-08d1-4628-82c1-8ef6ec623223");
+
+            var newFamilyShoppingList = new FamilyShoppingListDto
+            {
+                FamilyId = new Guid("ce9b91e4-08d1-4628-82c1-8ef6ec623223"),
+                ArticleName = "TestFam",              
+                ArticleQuantity = 1,
+                IsAvailable = true,
+            };
+            var addFamilyShoppingListCmd = new AddArticleToFamilyShoppingListCommand(newFamilyShoppingList);
 
             var expectFamShoppingList = new FamilyArticleList
             {
-                FamilyName = newFamilyShoppingList.FamilyName,
+
+                FamilyId = newFamilyShoppingList.FamilyId,
                 ArticleName = newFamilyShoppingList.ArticleName,
                 ArticleQuantity = newFamilyShoppingList.ArticleQuantity,
                 IsAvailable = newFamilyShoppingList.IsAvailable
             };
 
-            var handler = new AddFamilyShoppingListCommandHandler(famRepo);
+           
+            var handler = new AddArticleToFamilyShoppingListCommandHandler(famRepo);
 
             A.CallTo(() => famRepo.AddShoppingListAsync(newFamilyShoppingList));
 
+            //Act
             var result = await handler.Handle(addFamilyShoppingListCmd, CancellationToken.None);
 
-
-            Assert.That(result.FamilyName, Is.EqualTo(expectFamShoppingList.FamilyName));
+            //Assert
+            Assert.That(result.FamilyId, Is.EqualTo(expectFamShoppingList.FamilyId));
             Assert.That(result.ArticleName, Is.EqualTo(expectFamShoppingList.ArticleName));
             Assert.That(result.ArticleQuantity, Is.EqualTo(expectFamShoppingList.ArticleQuantity));
             Assert.That(result.IsAvailable, Is.EqualTo(expectFamShoppingList.IsAvailable));
-
+            
 
 
 
