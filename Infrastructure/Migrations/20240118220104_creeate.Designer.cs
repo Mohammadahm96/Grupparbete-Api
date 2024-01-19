@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20240117083338_create")]
-    partial class create
+    [Migration("20240118220104_creeate")]
+    partial class creeate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,12 +38,46 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ArticleQuantity")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("FamilyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FamilyName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
                     b.HasKey("ArticleId");
 
                     b.ToTable("FamilyArticleList");
+                });
+
+            modelBuilder.Entity("Domain.Models.ListModels.SommarHusArticleList", b =>
+                {
+                    b.Property<Guid>("ArticleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ArticleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ArticleQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HouseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ArticleId");
+
+                    b.ToTable("SommarHusLists");
                 });
 
             modelBuilder.Entity("Domain.Models.UserModel.User", b =>
