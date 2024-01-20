@@ -41,38 +41,34 @@ namespace Infrastructure.Repository
                 }
                 else
                 {
-                    // Handle the case when the family with the given ID is not found
-                    // You can throw an exception or return a default value as needed
                     throw new InvalidOperationException($"Family with ID {familyId} not found.");
                 }
             }
             catch (Exception ex)
             {
-                // Handle exceptions according to your application's requirements
                 throw new Exception("Failed to retrieve familyName from the database", ex);
             }
         }
 
-        //public async Task<Guid> AddFamilyAsync(string familyName)
-        //{
-        //    try
-        //    {
-        //        var newFamily = new FamilyArticleList
-        //        {
-        //            FamilyId = Guid.NewGuid(),
-        //            FamilyName = familyName
-        //        };
+        public async Task<Guid> AddFamilyAsync(string familyName)
+        {
+            try
+            {
+                var newFamily = new FamilyArticleList
+                {
+                    FamilyId = Guid.NewGuid(),
+                    FamilyName = familyName,
+                };
 
-        //        await _myDbContext.Set<FamilyArticleList>().AddAsync(newFamily);
-        //        await _myDbContext.SaveChangesAsync();
+                await _myDbContext.Set<FamilyArticleList>().AddAsync(newFamily);
+                await _myDbContext.SaveChangesAsync();
 
-        //        return newFamily.FamilyId;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Hantera undantag här om det behövs
-        //        throw;
-        //    }
-        //}
+                return newFamily.FamilyId;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

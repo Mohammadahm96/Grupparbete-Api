@@ -1,4 +1,4 @@
-using Application.Commands.FamilyShoppingListCommands;
+using Application.Commands.FamilyShoppingListCommands.AddFamilyList;
 using Application.Commands.FamilyShoppingListCommands.AddFamilyShoppingList;
 using Application.Dto;
 using MediatR;
@@ -30,5 +30,22 @@ namespace Grupparbete_Api.Controllers
 
             return Ok(await _mediator.Send(new AddArticleToFamilyShoppingListCommand(newFamilyShoppingList)));
         }
+        [HttpPost]
+        [Route("addNewFamily")]
+        public async Task<IActionResult> AddFamily([FromBody] AddNewFamilyDto newFamilyDto)
+        {
+            try
+            {
+                var addFamilyCommand = new AddFamilyCommand(newFamilyDto);
+                var familyId = await _mediator.Send(addFamilyCommand);
+
+                return Ok(new { FamilyId = familyId });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while trying to add a family.");
+            }
+        }
+
     }
 }
