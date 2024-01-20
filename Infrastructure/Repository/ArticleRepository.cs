@@ -49,6 +49,34 @@ namespace Infrastructure.Repository
                 throw new Exception("Failed to retrieve familyName from the database", ex);
             }
         }
+        public async Task<FamilyArticleList> GetFamilyArticleAsync(Guid familyId, Guid articleId)
+        {
+            try
+            {
+                var familyList = await _myDbContext.FamilyArticleList
+                    .Where(f => f.FamilyId == familyId && f.ArticleId == articleId)
+                    .FirstOrDefaultAsync();
+
+                return familyList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to retrieve FamilyArticle from the database", ex);
+            }
+        }
+
+        public async Task UpdateShoppingListAsync<T>(T entity) where T : class
+        {
+            try
+            {
+                _myDbContext.Set<T>().Update(entity);
+                await _myDbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update FamilyList in the database", ex);
+            }
+        }
 
         public async Task<Guid> AddFamilyAsync(string familyName)
         {
