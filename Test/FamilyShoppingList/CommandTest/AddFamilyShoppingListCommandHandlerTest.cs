@@ -28,7 +28,7 @@ namespace Test.FamilyShoppingList.Command
             var newFamilyShoppingList = new FamilyShoppingListDto
             {
                 FamilyId = new Guid("ce9b91e4-08d1-4628-82c1-8ef6ec623223"),
-                ArticleName = "TestFam",              
+                ArticleName = "TestFam",
                 ArticleQuantity = 1,
                 IsAvailable = true,
             };
@@ -43,7 +43,6 @@ namespace Test.FamilyShoppingList.Command
                 IsAvailable = newFamilyShoppingList.IsAvailable
             };
 
-           
             var handler = new AddArticleToFamilyShoppingListCommandHandler(famRepo);
 
             A.CallTo(() => famRepo.AddShoppingListAsync(newFamilyShoppingList));
@@ -56,8 +55,6 @@ namespace Test.FamilyShoppingList.Command
             Assert.That(result.ArticleName, Is.EqualTo(expectFamShoppingList.ArticleName));
             Assert.That(result.ArticleQuantity, Is.EqualTo(expectFamShoppingList.ArticleQuantity));
             Assert.That(result.IsAvailable, Is.EqualTo(expectFamShoppingList.IsAvailable));
-            
-
 
 
 
