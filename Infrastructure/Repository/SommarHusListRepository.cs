@@ -41,11 +41,11 @@ namespace Infrastructure.Repository
         }
         public async Task<SommarHusArticleList?> GetSommarHusListByIdAsync(Guid id)
         {
-            return await _context.SommarHusLists.FirstOrDefaultAsync(bird => bird.Id == id);
+            return await _context.SommarHusLists.FirstOrDefaultAsync(bird => bird.SommarHusId == id);
         }
         public async Task<SommarHusArticleList?> DeleteSommarHusListByIdAsync(Guid id)
         {
-            SommarHusArticleList? sommarHusArticleListToDelete = await _context.SommarHusLists.FirstOrDefaultAsync(sommarHusArticleList => sommarHusArticleList.Id == id);
+            SommarHusArticleList? sommarHusArticleListToDelete = await _context.SommarHusLists.FirstOrDefaultAsync(sommarHusArticleList => sommarHusArticleList.SommarHusId == id);
             if (sommarHusArticleListToDelete != null)
             {
                 _context.SommarHusLists.Remove(sommarHusArticleListToDelete);
@@ -56,7 +56,7 @@ namespace Infrastructure.Repository
         }
         public async Task<SommarHusArticleList?> UpdateSommarHusListByIdAsync(Guid id)
         {
-            SommarHusArticleList? sommarHusArticleListToUpdate = await _context.SommarHusLists.FirstOrDefaultAsync(sommarHusArticleList => sommarHusArticleList.Id == id);
+            SommarHusArticleList? sommarHusArticleListToUpdate = await _context.SommarHusLists.FirstOrDefaultAsync(sommarHusArticleList => sommarHusArticleList.SommarHusId == id);
             if (sommarHusArticleListToUpdate != null)
             {
                 _context.SommarHusLists.Update(sommarHusArticleListToUpdate);
@@ -64,6 +64,11 @@ namespace Infrastructure.Repository
                 return sommarHusArticleListToUpdate;
             }
             return null;
+        }
+
+        public Task<string> GetSommarHusNameAsync(object sommarHusId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

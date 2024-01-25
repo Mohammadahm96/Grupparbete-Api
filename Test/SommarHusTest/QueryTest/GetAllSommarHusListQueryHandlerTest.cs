@@ -9,14 +9,14 @@ namespace Test.SommarHusTest.QueryTest
     [TestFixture]
     public class GetAllSommarHusListQueryHandlerTest
     {
-        private Mock<ISommarHusListRepository> _sommarHusListBirdRepository;
+        private Mock<ISommarHusListRepository> _sommarHusListRepository;
         private GetAllSommarHusListQueryHandler _handler;
 
         [SetUp]
         public void SetUp()
         {
-            _sommarHusListBirdRepository = new Mock<ISommarHusListRepository>();
-            _handler = new GetAllSommarHusListQueryHandler(_sommarHusListBirdRepository.Object);
+            _sommarHusListRepository = new Mock<ISommarHusListRepository>();
+            _handler = new GetAllSommarHusListQueryHandler(_sommarHusListRepository.Object);
         }
 
         [Test]
@@ -25,14 +25,14 @@ namespace Test.SommarHusTest.QueryTest
             //Arrange
             List<SommarHusArticleList> expectedSommarHusList = new List<SommarHusArticleList>
             {
-                new SommarHusArticleList { Id = Guid.NewGuid(), HouseName = "Villa" },
-                new SommarHusArticleList { Id = Guid.NewGuid(), HouseName = "RadHus" },
-                new SommarHusArticleList { Id = Guid.NewGuid(), HouseName = "LitteMabel" },
-                new SommarHusArticleList { Id = Guid.NewGuid(), HouseName = "Skyscaper" },
-                new SommarHusArticleList { Id = Guid.NewGuid(), HouseName = "Långtornet" },
+                new SommarHusArticleList { SommarHusId = Guid.NewGuid(), HouseName = "Villa" },
+                new SommarHusArticleList { SommarHusId = Guid.NewGuid(), HouseName = "RadHus" },
+                new SommarHusArticleList { SommarHusId = Guid.NewGuid(), HouseName = "LitteMabel" },
+                new SommarHusArticleList { SommarHusId = Guid.NewGuid(), HouseName = "Skyscaper" },
+                new SommarHusArticleList { SommarHusId = Guid.NewGuid(), HouseName = "Långtornet" },
             };
 
-            _sommarHusListBirdRepository.Setup(repo => repo.GetAllSommarHusListAsync()).ReturnsAsync(expectedSommarHusList);
+            _sommarHusListRepository.Setup(repo => repo.GetAllSommarHusListAsync()).ReturnsAsync(expectedSommarHusList);
 
 
             //Act

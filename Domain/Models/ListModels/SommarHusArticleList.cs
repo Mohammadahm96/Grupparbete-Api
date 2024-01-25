@@ -2,7 +2,7 @@
 {
     public class SommarHusArticleList : ShoppingArticleModel
     {
-        public Guid Id { get; set; }
+        public Guid SommarHusId { get; set; }
         public required string HouseName { get; set; }
     }
 }

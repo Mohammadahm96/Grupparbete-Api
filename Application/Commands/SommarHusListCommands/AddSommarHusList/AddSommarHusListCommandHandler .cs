@@ -18,9 +18,9 @@ namespace Application.Commands.SommarHusListCommands.AddSommarHusList
         {
             SommarHusArticleList sommarHusListToCreate = new SommarHusArticleList
             {
-                Id = Guid.NewGuid(),
+                SommarHusId = Guid.NewGuid(),
                 HouseName = request.NewSommarHusList.HouseName,
-                ArticleName = request.NewSommarHusList.ArticleName,
+                ArticleName = " ",
                 ArticleQuantity = 2,
                 IsAvailable = true,
             };

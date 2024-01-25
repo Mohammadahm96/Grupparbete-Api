@@ -6,11 +6,11 @@ namespace Application.Commands.SommarHusLists.AddSommarHusList
 {
     public class AddSommarHusListCommand : IRequest<SommarHusArticleList>
     {
-        public AddSommarHusListCommand(SommarHusListDto newSommarHusList)
+        public AddSommarHusListCommand(AddNewSommarHusDto newSommarHusList)
         {
             NewSommarHusList = newSommarHusList;
         }
 
-        public SommarHusListDto NewSommarHusList { get; set; }
+        public AddNewSommarHusDto NewSommarHusList { get; set; }
     }
 }
