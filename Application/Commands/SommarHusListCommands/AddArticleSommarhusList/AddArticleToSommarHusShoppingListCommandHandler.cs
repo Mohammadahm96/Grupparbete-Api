@@ -26,7 +26,7 @@ public class AddArticleToSommarHusShoppingListCommandHandler : IRequestHandler<A
         SommarHusArticleList sommarHusListToCreate = new SommarHusArticleList
         {
             SommarHusId = request.NewSommarHusShoppingList.SommarHusId,
-            ArticleId = Guid.NewGuid(), 
+            ArticleId = Guid.NewGuid(),
             ArticleName = request.NewSommarHusShoppingList.ArticleName,
             ArticleQuantity = 1,
             IsAvailable = true,
