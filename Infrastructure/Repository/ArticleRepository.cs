@@ -70,5 +70,22 @@ namespace Infrastructure.Repository
                 throw;
             }
         }
+
+        public async Task<List<string>> GetArticleNamesByFamilyIdAsync(Guid familyId)
+        {
+            try
+            {
+                var articleNames = await _myDbContext.FamilyArticleList
+                    .Where(f => f.FamilyId == familyId)
+                    .Select(f => f.ArticleName)
+                    .ToListAsync();
+
+                return articleNames;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to retrieve ArticleNames from the database", ex);
+            }
+        }
     }
 }
