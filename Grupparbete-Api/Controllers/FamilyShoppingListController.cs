@@ -70,9 +70,6 @@ namespace Grupparbete_Api.Controllers
                 return StatusCode(500, $"Internal Server Error: {ex.Message}");
             }
         }
-    }
-
-}
         [HttpGet]
         [Route("getArticlesByFamilyId")]
         public async Task<IActionResult> GetArticlesByFamilyId([FromQuery] Guid familyId)
@@ -94,6 +91,5 @@ namespace Grupparbete_Api.Controllers
                 return StatusCode(500, "An error occurred while trying to retrieve articles for the family.");
             }
         }
-
     }
 }
