@@ -2,6 +2,7 @@ using Application.Commands.FamilyShoppingListCommands.AddFamilyList;
 using Application.Commands.FamilyShoppingListCommands.AddFamilyShoppingList;
 using Application.Commands.FamilyShoppingListCommands.UpdateFamilyShoppingList;
 using Application.Dto;
+using Application.Query.FamilyArticleQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -69,6 +70,26 @@ namespace Grupparbete_Api.Controllers
                 return StatusCode(500, $"Internal Server Error: {ex.Message}");
             }
         }
-    }
+        [HttpGet]
+        [Route("getArticlesByFamilyId")]
+        public async Task<IActionResult> GetArticlesByFamilyId([FromQuery] Guid familyId)
+        {
+            try
+            {
+                if (familyId == Guid.Empty)
+                {
+                    return BadRequest("FamilyId is required to retrieve articles for the family shopping list.");
+                }
 
+                var query = new GetAllArticlesByFamilyIdQuery(familyId);
+                var articleNames = await _mediator.Send(query);
+
+                return Ok(articleNames);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while trying to retrieve articles for the family.");
+            }
+        }
+    }
 }
