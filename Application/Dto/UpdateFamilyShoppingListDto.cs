@@ -4,7 +4,7 @@
     {
         public Guid FamilyId { get; set; }
         public Guid ArticleId { get; set; }
-        public required string ArticleName { get; set; }
+        public string ArticleName { get; set; }
 
     }
 }
