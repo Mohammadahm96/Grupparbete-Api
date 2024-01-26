@@ -2,6 +2,6 @@
 {
     public class AddNewFamilyDto
     {
-        public required string FamilyName { get; set; }
+        public string FamilyName { get; set; }
     }
 }
