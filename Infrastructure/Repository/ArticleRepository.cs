@@ -125,7 +125,7 @@ namespace Infrastructure.Repository
             }
             catch (Exception ex)
             {
-                throw new Exception ("Failed to delete", ex);
+                throw new Exception("Failed to delete from the database", ex);
             }
         }
 
