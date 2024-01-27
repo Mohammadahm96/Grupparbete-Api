@@ -24,7 +24,7 @@ namespace Test.SommarHusTest.CommandTest
         {
             //Arrange
             var sommarHusListId = Guid.NewGuid();
-            var sommarHusListToUpdate = new SommarHusArticleList { Id = sommarHusListId, HouseName = "Radhus", IsAvailable = true };
+            var sommarHusListToUpdate = new SommarHusArticleList { SommarHusId = sommarHusListId, HouseName = "Radhus", IsAvailable = true };
             var updatedSommarHusListDto = new SommarHusListDto { HouseName = "Updated", IsAvailable = false, ArticleName = "UpdatedArticle" };
             var command = new UpdateSommarHusListByIdCommand(sommarHusListId, updatedSommarHusListDto);
             _sommarHusListRepositoryMock!.Setup(repo => repo.GetSommarHusListByIdAsync(sommarHusListId)).ReturnsAsync(sommarHusListToUpdate);

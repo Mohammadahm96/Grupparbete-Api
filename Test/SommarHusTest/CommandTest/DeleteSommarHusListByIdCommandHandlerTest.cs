@@ -23,7 +23,7 @@ namespace Test.SommarHusTest.CommandTest
         {
             // Arrange
             var sommarHusListId = Guid.NewGuid();
-            var sommarHusListToDelete = new SommarHusArticleList { Id = sommarHusListId, HouseName = "Radhus", IsAvailable = true };
+            var sommarHusListToDelete = new SommarHusArticleList { SommarHusId = sommarHusListId, HouseName = "Radhus", IsAvailable = true };
             var command = new DeleteSommarHusListByIdCommand(sommarHusListId);
 
             _sommarHusListRepositoryMock!.Setup(repo => repo.GetSommarHusListByIdAsync(sommarHusListId)).ReturnsAsync(sommarHusListToDelete);

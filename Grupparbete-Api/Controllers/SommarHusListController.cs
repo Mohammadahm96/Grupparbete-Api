@@ -1,4 +1,6 @@
-﻿using Application.Commands.SommarHusListCommands.UpdateSommarHusList;
+﻿using Application.Commands.FamilyShoppingListCommands.AddFamilyShoppingList;
+using Application.Commands.SommarHusListCommands.AddArticleSommarhusList;
+using Application.Commands.SommarHusListCommands.UpdateSommarHusList;
 using Application.Commands.SommarHusLists.AddSommarHusList;
 using Application.Commands.SommarHusLists.DeleteSommarHusList;
 using Application.Dto;
@@ -40,9 +42,23 @@ namespace Grupparbete_Api.Controllers
         //Create a new SommarHus
         [HttpPost]
         [Route("addNewSommarHusList")]
-        public async Task<IActionResult> AddSommarHusList([FromBody] SommarHusListDto newSommarHusList)
+        public async Task<IActionResult> AddSommarHusList([FromBody] AddNewSommarHusDto newSommarHusList)
         {
             return Ok(await _mediator.Send(new AddSommarHusListCommand(newSommarHusList)));
+        }
+        [HttpPost]
+        [Route("addNewArticle")]
+        public async Task<IActionResult> AddArticle([FromBody] SommarHusListDto newSommarHusList, [FromQuery] Guid sommarHusId)
+        {
+
+            if (sommarHusId == Guid.Empty)
+            {
+                return BadRequest("SommarHusId is required to add an article to the sommarHus shopping list.");
+            }
+
+            newSommarHusList.SommarHusId = sommarHusId;
+
+            return Ok(await _mediator.Send(new AddArticleToSommarHusShoppingListCommand(newSommarHusList)));
         }
 
         [HttpDelete("{id}")]
