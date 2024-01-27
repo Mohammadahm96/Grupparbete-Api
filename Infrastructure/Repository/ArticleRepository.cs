@@ -115,5 +115,19 @@ namespace Infrastructure.Repository
                 throw new Exception("Failed to retrieve ArticleNames from the database", ex);
             }
         }
+        public async Task DeleteFamilyArticleAsync(string familyId, string articleId)
+        {
+            try
+            {
+                var familyList = new FamilyArticleList { FamilyId = Guid.Parse(familyId), ArticleId = Guid.Parse(articleId) };
+                _myDbContext.Remove(familyList);
+                await _myDbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception ("Failed to delete", ex);
+            }
+        }
+
     }
 }
