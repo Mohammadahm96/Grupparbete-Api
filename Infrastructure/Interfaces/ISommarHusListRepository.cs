@@ -10,6 +10,11 @@ namespace Infrastructure.Interfaces
         Task<SommarHusArticleList?> GetSommarHusListByIdAsync(Guid id);
         Task<SommarHusArticleList?> DeleteSommarHusListByIdAsync(Guid id);
         Task<SommarHusArticleList?> UpdateSommarHusListByIdAsync(Guid id);
-        Task<string> GetSommarHusNameAsync(object sommarHusId);
+
+        Task<string> GetHouseNameAsync(Guid sommarHusId);
+
+        Task<List<string>> GetArticleNamesBySommarHusIdAsync(Guid sommarHusId);
+        //Task<List<(Guid SommarHusId, string HouseName)>> GetIdAndNameAsync();
+        Task<List<object>> GetIdAndNameAsync();
     }
 }

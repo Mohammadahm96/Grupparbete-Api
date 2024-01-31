@@ -21,7 +21,7 @@ public class AddArticleToSommarHusShoppingListCommandHandler : IRequestHandler<A
         }
 
         // Fetch the houseName based on HouseId (assuming you have a method to get houseName from HouseId)
-        string houseName = await _sommarHusListRepository.GetSommarHusNameAsync(request.NewSommarHusShoppingList.SommarHusId);
+        string houseName = await _sommarHusListRepository.GetHouseNameAsync(request.NewSommarHusShoppingList.SommarHusId);
 
         SommarHusArticleList sommarHusListToCreate = new SommarHusArticleList
         {

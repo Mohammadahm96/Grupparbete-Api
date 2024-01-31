@@ -66,9 +66,68 @@ namespace Infrastructure.Repository
             return null;
         }
 
-        public Task<string> GetSommarHusNameAsync(object sommarHusId)
+        public async Task<string> GetHouseNameAsync(Guid sommarHusId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var sommarHus = await _context.SommarHusLists
+                    .Where(sh => sh.SommarHusId == sommarHusId)
+                    .FirstOrDefaultAsync();
+
+                if (sommarHus != null)
+                {
+                    return sommarHus.HouseName;
+                }
+                else
+                {
+                    throw new InvalidOperationException($"SommarHus with ID {sommarHusId} not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to retrieve houseName from the database", ex);
+            }
+        }
+
+        public async Task<List<string>> GetArticleNamesBySommarHusIdAsync(Guid SommarHusId)
+        {
+            try
+            {
+                var articleNames = await _context.SommarHusLists
+                    .Where(f => f.SommarHusId == SommarHusId)
+                    .Select(f => f.ArticleName)
+                    .ToListAsync();
+
+                return articleNames;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to retrieve ArticleNames from the database", ex);
+            }
+        }
+
+        public async Task<List<object>> GetIdAndNameAsync()
+        {
+            try
+            {
+                var idAndNames = await _context.SommarHusLists
+                    .OfType<SommarHusArticleList>() // Filtrera på typen SommarHusArticleList
+                    .Select(sh => new { SommarHusId = sh.SommarHusId, HouseName = sh.HouseName })
+                    .ToListAsync();
+
+                // Logga antalet rader och varje rad för felsökning
+                Console.WriteLine($"Antal rader hämtade från databasen: {idAndNames.Count}");
+                foreach (var item in idAndNames)
+                {
+                    Console.WriteLine($"SommarHusId: {item.SommarHusId}, HouseName: {item.HouseName}");
+                }
+
+                return idAndNames.Cast<object>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to retrieve IDs and names from the database", ex);
+            }
         }
     }
 }
