@@ -41,7 +41,7 @@ namespace Infrastructure.Repository
         }
         public async Task<SommarHusArticleList?> GetSommarHusListByIdAsync(Guid id)
         {
-            return await _context.SommarHusLists.FirstOrDefaultAsync(bird => bird.SommarHusId == id);
+            return await _context.SommarHusLists.FirstOrDefaultAsync(sommarHusArticleList => sommarHusArticleList.SommarHusId == id);
         }
         public async Task<SommarHusArticleList?> DeleteSommarHusListByIdAsync(Guid id)
         {
