@@ -111,7 +111,7 @@ namespace Infrastructure.Repository
             try
             {
                 var idAndNames = await _context.SommarHusLists
-                    .OfType<SommarHusArticleList>() // Filtrera på typen SommarHusArticleList
+                    .OfType<SommarHusArticleList>()
                     .Select(sh => new { SommarHusId = sh.SommarHusId, HouseName = sh.HouseName })
                     .ToListAsync();
 

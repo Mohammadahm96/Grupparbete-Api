@@ -28,14 +28,14 @@ namespace Test.SommarHusTest.QueryTest
         public async Task Handle_ReturnsFamilyAndArticles()
         {
             // Arrange
-            var sommarHusId = Guid.NewGuid(); // Provide a valid Guid
+            var sommarHusId = Guid.NewGuid();
             string expectedSommarhusName = "Villa";
             List<string> expectedArticleNames = new List<string> { "Article1", "Article2" };
 
             _sommarHusListRepository.Setup(repo => repo.GetHouseNameAsync(sommarHusId)).ReturnsAsync(expectedSommarhusName);
             _sommarHusListRepository.Setup(repo => repo.GetArticleNamesBySommarHusIdAsync(sommarHusId)).ReturnsAsync(expectedArticleNames);
 
-            var request = new GetFamilySommarHusArticlesQuery(sommarHusId); // Provide the Guid here
+            var request = new GetFamilySommarHusArticlesQuery(sommarHusId);
 
             // Act
             List<string> result = await _handler.Handle(request, CancellationToken.None);
@@ -43,7 +43,7 @@ namespace Test.SommarHusTest.QueryTest
             // Assert
             Assert.NotNull(result);
             Assert.That(result[0], Is.EqualTo(expectedSommarhusName));
-            Assert.That(result.Count - 1, Is.EqualTo(expectedArticleNames.Count)); // excluding the family name
+            Assert.That(result.Count - 1, Is.EqualTo(expectedArticleNames.Count));
             Assert.That(result.GetRange(1, expectedArticleNames.Count), Is.EqualTo(expectedArticleNames));
         }
     }

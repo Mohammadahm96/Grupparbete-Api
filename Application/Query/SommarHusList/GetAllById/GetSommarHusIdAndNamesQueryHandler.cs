@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Query.SommarHusList.GetAllById
 {
-    public class GetSommarHusIdAndNamesHandler : IRequestHandler<GetSommarHusIdAndNamesQuery, List<object>> // Uppdaterad returtyp
+    public class GetSommarHusIdAndNamesHandler : IRequestHandler<GetSommarHusIdAndNamesQuery, List<object>>
     {
         private readonly ISommarHusListRepository _sommarHusListRepository;
 
@@ -15,7 +15,7 @@ namespace Application.Query.SommarHusList.GetAllById
         public async Task<List<object>> Handle(GetSommarHusIdAndNamesQuery request, CancellationToken cancellationToken)
         {
             var result = await _sommarHusListRepository.GetIdAndNameAsync();
-            return result.Cast<object>().ToList(); // Behåll omvandlingen till lista av objekt
+            return result.Cast<object>().ToList();
         }
     }
 }
