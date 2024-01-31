@@ -42,9 +42,9 @@ namespace Test.SommarHusTest.QueryTest
 
             // Assert
             Assert.NotNull(result);
-            Assert.AreEqual(expectedSommarhusName, result[0]);
-            Assert.AreEqual(expectedArticleNames.Count, result.Count - 1); // excluding the family name
-            Assert.AreEqual(expectedArticleNames, result.GetRange(1, expectedArticleNames.Count));
+            Assert.That(result[0], Is.EqualTo(expectedSommarhusName));
+            Assert.That(result.Count - 1, Is.EqualTo(expectedArticleNames.Count)); // excluding the family name
+            Assert.That(result.GetRange(1, expectedArticleNames.Count), Is.EqualTo(expectedArticleNames));
         }
     }
 }
