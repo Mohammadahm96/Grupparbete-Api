@@ -11,5 +11,6 @@ namespace Infrastructure.Interface
         Task<FamilyArticleList> GetFamilyArticleAsync(Guid familyId, Guid articleId);
         Task UpdateShoppingListAsync<T>(T entity) where T : class;
         Task DeleteFamilyArticleAsync(string familyId, string articleId);
+
     }
 }

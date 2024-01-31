@@ -3,6 +3,6 @@
     public class SommarHusArticleList : ShoppingArticleModel
     {
         public Guid SommarHusId { get; set; }
-        public required string HouseName { get; set; }
+        public string HouseName { get; set; }
     }
 }

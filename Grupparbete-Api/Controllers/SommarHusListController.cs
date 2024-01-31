@@ -4,9 +4,9 @@ using Application.Commands.SommarHusLists.AddSommarHusList;
 using Application.Commands.SommarHusLists.DeleteSommarHusList;
 using Application.Dto;
 using Application.Query.SommarHusList.GetAll;
-using Application.Query.SommarHusList.GetById;
+using Application.Query.SommarHusList.GetAllById;
 using MediatR;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Grupparbete_Api.Controllers
@@ -22,21 +22,35 @@ namespace Grupparbete_Api.Controllers
             _mediator = mediator;
         }
 
-        //Get all Sommarhuslist from Db
         [HttpGet]
-        [Route("getAllSommarHusList")]
-        public async Task<IActionResult> GetAllSommarHusList()
+        [Route("getArticlesByFamilyId")]
+        public async Task<IActionResult> GetArticleNamesBySommarHusIdAsync([FromQuery] Guid sommarhusid)
         {
-            return Ok(await _mediator.Send(new GetAllSommarHusListQuery()));
+            try
+            {
+                if (sommarhusid == Guid.Empty)
+                {
+                    return BadRequest("FamilyId is required to retrieve articles for the family shopping list.");
+                }
+
+                var query = new GetFamilySommarHusArticlesQuery(sommarhusid);
+                var articleNames = await _mediator.Send(query);
+
+                return Ok(articleNames);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while trying to retrieve articles for the family.");
+            }
         }
 
-        //Get Sommarhuslist By Id
-        [HttpGet]
-        [Route("getSommarHusListById/{sommarHusArticleId}")]
-        public async Task<IActionResult> GetSommarHusListById(Guid sommarHusArticleId)
-        {
-            return Ok(await _mediator.Send(new GetSommarHusListByIdQuery(sommarHusArticleId)));
-        }
+        ////Get Sommarhuslist By Id
+        //    [HttpGet]
+        //    [Route("getSommarHusListById/{sommarHusArticleId}")]
+        //    public async Task<IActionResult> GetSommarHusListById(Guid sommarHusArticleId)
+        //    {
+        //        return Ok(await _mediator.Send(new GetSommarHusListByIdQuery(sommarHusArticleId)));
+        //    }
 
         //Create a new SommarHus
         [HttpPost]
@@ -77,6 +91,16 @@ namespace Grupparbete_Api.Controllers
         public async Task<IActionResult> UpdateSommarHusList([FromBody] SommarHusListDto updatedSommarHusList, Guid updateSommarHusListId)
         {
             return Ok(await _mediator.Send(new UpdateSommarHusListByIdCommand(updateSommarHusListId, updatedSommarHusList)));
+        }
+
+        [Authorize]
+        [HttpGet("sommarhusidandnames")]
+        public async Task<ActionResult<List<object>>> GetSommarHusIdAndNames()
+        {
+            var query = new GetSommarHusIdAndNamesQuery();
+            var result = await _mediator.Send(query);
+
+            return Ok(result.Cast<object>().ToList());
         }
     }
 }
